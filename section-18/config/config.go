@@ -8,11 +8,18 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type Db struct {
+	DbPort     string
+	DbHost     string
+	DbUser     string
+	DbPassword string
+	DbName     string
+}
+
 type ConfigList struct {
-	Port      string
-	SQLDriver string
-	DbName    string
-	LogFile   string
+	Port    string
+	LogFile string
+	Db
 }
 
 var Config ConfigList
@@ -29,9 +36,14 @@ func Init() {
 	}
 
 	Config = ConfigList{
-		Port:      os.Getenv("PORT"),
-		SQLDriver: os.Getenv("SQL_DRIVER"),
-		DbName:    os.Getenv("DB_NAME"),
-		LogFile:   os.Getenv("LOG_FILE"),
+		Port:    os.Getenv("PORT"),
+		LogFile: os.Getenv("LOG_FILE"),
+		Db: Db{
+			DbPort:     os.Getenv("DB_PORT"),
+			DbHost:     os.Getenv("DB_HOST"),
+			DbUser:     os.Getenv("DB_USER"),
+			DbPassword: os.Getenv("DB_PASSWORD"),
+			DbName:     os.Getenv("DB_NAME"),
+		},
 	}
 }

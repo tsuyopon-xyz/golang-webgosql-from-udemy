@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"log"
 
-	"myapp/config"
+	"myapp/app/db"
 )
 
 func main() {
-	fmt.Printf("%+v\n", config.Config)
+	db := db.Init()
+	fmt.Printf("%+v @@@@@@@@@\n", db)
 
 	log.Println("test")
 }
