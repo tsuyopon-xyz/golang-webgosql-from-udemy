@@ -2,6 +2,7 @@ package config
 
 import (
 	"log"
+	"myapp/utils"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -18,6 +19,7 @@ var Config ConfigList
 
 func init() {
 	Init()
+	utils.LoggingSetting(Config.LogFile)
 }
 
 func Init() {
